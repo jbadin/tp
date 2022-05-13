@@ -1,11 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  FlatList,
+} from "react-native";
+import Scientist from "./components/Scientist";
 
 export default function App() {
+  const customData = require("./data/tp.json");
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <ScrollView>
+        <FlatList
+          data={customData}
+          renderItem={({ item }) => (
+            <Scientist
+              title={item.title}
+              img={item.img}
+              desc={item.desc}
+            ></Scientist>
+          )}
+        />
+      </ScrollView>
     </View>
   );
 }
@@ -13,8 +29,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 30,
   },
 });
